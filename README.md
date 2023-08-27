@@ -9,7 +9,9 @@ Main idea is to have a read only API that a frontend can access, but have all wr
 Relies on github webhooks to handle create, update, and deletes in the databse.
 
 Requirements:
+```
 Python 3.10+
-django
+django 
 djangorestframework
 hookdeck
+```
