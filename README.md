@@ -7,3 +7,9 @@ This repo uses hookdeck to replicate webhooks in a production setting by sending
 
 Main idea is to have a read only API that a frontend can access, but have all write requests send directly to the github API.
 Relies on github webhooks to handle create, update, and deletes in the databse.
+
+Requirements:
+Python 3.10+
+django
+djangorestframework
+hookdeck
