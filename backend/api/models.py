@@ -11,6 +11,11 @@ class IssueWebhook(models.Model):
             models.Index(fields=["received_at"]),
         ]
 
+    def __str__(self):
+        model_name = self.__class__.__name__
+        fields_str = ", ".join((f"{field.name}={getattr(self, field.name)}" for field in self._meta.fields))
+        return f"{model_name}({fields_str})"
+
 class GithubUser(AbstractBaseUser):
     github_id = models.IntegerField(unique=True)
     username = models.CharField(max_length=200, unique=True)
@@ -23,6 +28,11 @@ class Label(models.Model):
     color = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     url = models.URLField(unique=True)
+
+    def __str__(self):
+        model_name = self.__class__.__name__
+        fields_str = ", ".join((f"{field.name}={getattr(self, field.name)}" for field in self._meta.fields))
+        return f"{model_name}({fields_str})"
 
 class Issue(models.Model):
     class IssueState(models.TextChoices):
@@ -44,6 +54,11 @@ class Issue(models.Model):
     last_updated_by = models.ForeignKey(GithubUser, on_delete=models.CASCADE, related_name="updated_issue", null=True, blank=True)
     assignees = models.ManyToManyField(GithubUser, related_name="assigned_issues", blank=True)
     labels = models.ManyToManyField(Label, blank=True)
+
+    def __str__(self):
+        model_name = self.__class__.__name__
+        fields_str = ", ".join((f"{field.name}={getattr(self, field.name)}" for field in self._meta.fields))
+        return f"{model_name}({fields_str})"
 
 
 
